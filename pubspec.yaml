@@ -1,0 +1,8 @@
+name: mekfeya_printer_bridge
+description: Isolates dart:js_interop from mobile builds for Mekfeya printer actions.
+version: 1.0.0
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
