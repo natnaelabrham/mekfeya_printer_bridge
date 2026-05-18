@@ -14,6 +14,9 @@ external JSPromise<JSBoolean> _requestUsbPrinter();
 @JS('isWindowsBrowser')
 external JSBoolean _isWindowsBrowser();
 
+@JS('disconnectPrinter')
+external JSPromise<JSBoolean> _disconnectPrinter();
+
 @JS('sendDataToPrinter')
 external JSPromise<JSBoolean> _sendDataToPrinter(JSUint8Array data);
 
@@ -80,6 +83,16 @@ Future<bool> sendDataToPrinterWeb(List<int> bytes) async {
     return true;
   } catch (e) {
     debugPrint('sendDataToPrinterWeb error: $e');
+    return false;
+  }
+}
+
+Future<bool> disconnectWebPrinter() async {
+  try {
+    final result = await _disconnectPrinter().toDart;
+    return result.toDart;
+  } catch (e) {
+    debugPrint('disconnectWebPrinter error: $e');
     return false;
   }
 }
