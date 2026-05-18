@@ -8,6 +8,9 @@ external JSPromise<JSBoolean> _requestBluetoothPrinter();
 @JS('requestSerialPrinter')
 external JSPromise<JSBoolean> _requestSerialPrinter();
 
+@JS('requestUsbPrinter') // 🚨 Added WebUSB binding
+external JSPromise<JSBoolean> _requestUsbPrinter();
+
 @JS('isWindowsBrowser')
 external JSBoolean _isWindowsBrowser();
 
@@ -22,30 +25,39 @@ extension WindowExtension on JSObject {
   external set onPrinterDisconnectCallback(JSFunction cb);
 }
 
-// ── connectWebPrinter ────────────────────────────────────────────────────────
-Future<bool> connectWebPrinter({required Function onDisconnect}) async {
+// ── connectWebPrinter (Unified Parameterized Version) ────────────────────────
+Future<bool> connectWebPrinter(
+    {required String type, required Function onDisconnect}) async {
   try {
     _window.onPrinterDisconnectCallback = (() {
       onDisconnect();
       debugPrint('Web printer disconnected.');
     }).toJS;
 
-    final bool isWindows = _isWindowsBrowser().toDart;
     bool connectionSuccess = false;
 
-    if (isWindows) {
-      debugPrint('Windows browser: using Web Serial API.');
-      final result = await _requestSerialPrinter().toDart;
+    if (type == 'usb') {
+      // 🔌 Route directly to raw WebUSB connection
+      debugPrint('Initiating direct WebUSB connection sequence...');
+      final result = await _requestUsbPrinter().toDart;
       connectionSuccess = result.toDart;
     } else {
-      debugPrint('Non-Windows browser: using Web Bluetooth API.');
-      final result = await _requestBluetoothPrinter().toDart;
-      connectionSuccess = result.toDart;
+      // 🧠 Route to your smart Windows Serial / Mobile Bluetooth logic
+      final bool isWindows = _isWindowsBrowser().toDart;
+      if (isWindows) {
+        debugPrint('Windows browser: using Web Serial API.');
+        final result = await _requestSerialPrinter().toDart;
+        connectionSuccess = result.toDart;
+      } else {
+        debugPrint('Non-Windows browser: using Web Bluetooth API.');
+        final result = await _requestBluetoothPrinter().toDart;
+        connectionSuccess = result.toDart;
+      }
     }
 
     return connectionSuccess;
   } catch (e) {
-    debugPrint('connectWebPrinter error: $e');
+    debugPrint('connectWebPrinter error ($type): $e');
     return false;
   }
 }
