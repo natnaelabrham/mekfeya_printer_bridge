@@ -11,6 +11,4 @@ Future<bool> sendDataToPrinterWeb(List<int> bytes) async {
   return false;
 }
 
-Future<bool> disconnectWebPrinter() async {
-  return true; // Logic handled natively in FF Action for mobile
-}
+Future<bool> disconnectWebPrinter() async => true;

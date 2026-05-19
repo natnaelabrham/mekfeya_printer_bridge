@@ -87,12 +87,4 @@ Future<bool> sendDataToPrinterWeb(List<int> bytes) async {
   }
 }
 
-Future<bool> disconnectWebPrinter() async {
-  try {
-    final result = await _disconnectPrinter().toDart;
-    return result.toDart;
-  } catch (e) {
-    debugPrint('disconnectWebPrinter error: $e');
-    return false;
-  }
-}
+Future<bool> disconnectWebPrinter() async => true;
