@@ -51,37 +51,37 @@
     },
     {
       "name": "flutter_blue_plus",
-      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus-1.36.8",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus-2.3.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "flutter_blue_plus_android",
-      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_android-7.0.4",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_android-9.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "flutter_blue_plus_darwin",
-      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_darwin-7.0.3",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_darwin-9.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "flutter_blue_plus_linux",
-      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_linux-7.0.3",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_linux-9.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "flutter_blue_plus_platform_interface",
-      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_platform_interface-7.0.0",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_platform_interface-9.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "flutter_blue_plus_web",
-      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_web-7.0.2",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_web-9.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -126,12 +126,6 @@
       "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/petitparser-7.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.8"
-    },
-    {
-      "name": "rxdart",
-      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",

@@ -2,10 +2,10 @@ name: mekfeya_printer_bridge
 description: Isolates dart:js_interop and mobile-only packages from web builds.
 version: 1.0.1
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ">=3.4.0 <4.0.0"
 dependencies:
   flutter:
     sdk: flutter
-  flutter_blue_plus: ^1.32.12
+  flutter_blue_plus: ^2.3.1 # <--- Matches your merchant app perfectly
   usb_serial: ^0.5.2
   http: ^1.2.0

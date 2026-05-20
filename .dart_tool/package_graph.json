@@ -15,6 +15,16 @@
       "devDependencies": []
     },
     {
+      "name": "http",
+      "version": "1.6.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
       "name": "usb_serial",
       "version": "0.5.2",
       "dependencies": [
@@ -36,6 +46,34 @@
       ]
     },
     {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "async",
+      "version": "2.13.1",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
       "name": "collection",
       "version": "1.19.1",
       "dependencies": []
@@ -51,11 +89,6 @@
       "dependencies": []
     },
     {
-      "name": "meta",
-      "version": "1.17.0",
-      "dependencies": []
-    },
-    {
       "name": "material_color_utilities",
       "version": "0.13.0",
       "dependencies": [
@@ -66,31 +99,6 @@
       "name": "characters",
       "version": "1.4.1",
       "dependencies": []
-    },
-    {
-      "name": "http",
-      "version": "1.6.0",
-      "dependencies": [
-        "async",
-        "http_parser",
-        "meta",
-        "web"
-      ]
-    },
-    {
-      "name": "web",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
-      "name": "http_parser",
-      "version": "4.1.2",
-      "dependencies": [
-        "collection",
-        "source_span",
-        "string_scanner",
-        "typed_data"
-      ]
     },
     {
       "name": "typed_data",
@@ -126,16 +134,8 @@
       "dependencies": []
     },
     {
-      "name": "async",
-      "version": "2.13.1",
-      "dependencies": [
-        "collection",
-        "meta"
-      ]
-    },
-    {
       "name": "flutter_blue_plus",
-      "version": "1.36.8",
+      "version": "2.3.2",
       "dependencies": [
         "flutter",
         "flutter_blue_plus_android",
@@ -147,7 +147,7 @@
     },
     {
       "name": "flutter_blue_plus_web",
-      "version": "7.0.2",
+      "version": "9.0.0",
       "dependencies": [
         "flutter",
         "flutter_blue_plus_platform_interface",
@@ -157,24 +157,23 @@
     },
     {
       "name": "flutter_blue_plus_platform_interface",
-      "version": "7.0.0",
+      "version": "9.0.0",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "flutter_blue_plus_linux",
-      "version": "7.0.3",
+      "version": "9.0.0",
       "dependencies": [
         "bluez",
         "flutter",
-        "flutter_blue_plus_platform_interface",
-        "rxdart"
+        "flutter_blue_plus_platform_interface"
       ]
     },
     {
       "name": "flutter_blue_plus_darwin",
-      "version": "7.0.3",
+      "version": "9.0.0",
       "dependencies": [
         "flutter",
         "flutter_blue_plus_platform_interface"
@@ -182,7 +181,7 @@
     },
     {
       "name": "flutter_blue_plus_android",
-      "version": "7.0.4",
+      "version": "9.0.0",
       "dependencies": [
         "flutter",
         "flutter_blue_plus_platform_interface"
@@ -213,11 +212,6 @@
       ]
     },
     {
-      "name": "ffi",
-      "version": "2.2.0",
-      "dependencies": []
-    },
-    {
       "name": "xml",
       "version": "6.6.1",
       "dependencies": [
@@ -227,22 +221,22 @@
       ]
     },
     {
-      "name": "petitparser",
-      "version": "7.0.2",
-      "dependencies": [
-        "collection",
-        "meta"
-      ]
-    },
-    {
-      "name": "rxdart",
-      "version": "0.28.0",
+      "name": "ffi",
+      "version": "2.2.0",
       "dependencies": []
     },
     {
       "name": "args",
       "version": "2.7.0",
       "dependencies": []
+    },
+    {
+      "name": "petitparser",
+      "version": "7.0.2",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
     }
   ],
   "configVersion": 1
