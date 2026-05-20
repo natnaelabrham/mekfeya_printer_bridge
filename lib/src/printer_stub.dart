@@ -40,3 +40,8 @@ Future<dynamic> getBluetoothWriteChar(String deviceId) async {
   debugPrint('getBluetoothWriteChar: not supported on web.');
   return null;
 }
+
+// Add this with your other mobile transport stubs
+Future<void> disconnectViaBluetoothMobile(String deviceId) async {
+  debugPrint('disconnectViaBluetoothMobile: not supported on this platform.');
+}

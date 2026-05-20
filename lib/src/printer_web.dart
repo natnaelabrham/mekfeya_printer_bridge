@@ -82,6 +82,9 @@ Future<bool> sendDataToPrinterWeb(List<int> bytes) async {
 // ── disconnectWebPrinter ─────────────────────────────────────────────────────
 Future<bool> disconnectWebPrinter() async => true;
 
+// Add this with your other mobile stubs at the bottom
+Future<void> disconnectViaBluetoothMobile(String deviceId) async {}
+
 // ── Mobile stubs — never called on web ───────────────────────────────────────
 Future<dynamic> getBluetoothWriteChar(String deviceId) async => null;
 Future<bool> sendViaBluetooth(List<int> bytes, String deviceId) async => false;

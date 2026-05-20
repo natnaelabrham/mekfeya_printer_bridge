@@ -90,6 +90,20 @@ Future<bool> sendViaEthernetMobile(List<int> bytes, String ip) async {
   }
 }
 
+// Add this under your Bluetooth section
+Future<void> disconnectViaBluetoothMobile(String deviceId) async {
+  try {
+    if (deviceId.isNotEmpty) {
+      final device = BluetoothDevice.fromId(deviceId);
+      await device.disconnect();
+      debugPrint(
+          'disconnectViaBluetoothMobile: Device $deviceId disconnected.');
+    }
+  } catch (e) {
+    debugPrint('disconnectViaBluetoothMobile error: $e');
+  }
+}
+
 // ── Web stubs — never called on mobile ───────────────────────────────────────
 Future<bool> connectWebPrinter({
   required String type,
