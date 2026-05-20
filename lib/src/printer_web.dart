@@ -79,6 +79,9 @@ Future<bool> sendDataToPrinterWeb(List<int> bytes) async {
   }
 }
 
+void monitorBluetoothConnectionMobile(
+    String deviceId, Function(bool) onStateChanged) {}
+
 Future<bool> connectViaBluetoothMobile(String deviceId) async => false;
 Future<void> disconnectViaBluetoothMobile(String deviceId) async {}
 

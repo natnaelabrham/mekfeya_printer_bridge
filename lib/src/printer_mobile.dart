@@ -124,6 +124,23 @@ Future<bool> sendViaEthernetMobile(List<int> bytes, String ip) async {
   }
 }
 
+// ── Connection Monitoring ───────────────────────────────────────────────────
+void monitorBluetoothConnectionMobile(
+    String deviceId, Function(bool) onStateChanged) {
+  try {
+    if (deviceId.isEmpty) return;
+    final device = BluetoothDevice.fromId(deviceId);
+
+    device.connectionState.listen((BluetoothConnectionState state) {
+      bool isConnected = (state == BluetoothConnectionState.connected);
+      onStateChanged(isConnected);
+      debugPrint("LOG: Connection state changed to: $state");
+    });
+  } catch (e) {
+    debugPrint("LOG: Error monitoring connection: $e");
+  }
+}
+
 // ── Web stubs — never called on mobile ───────────────────────────────────────
 Future<bool> connectWebPrinter({
   required String type,

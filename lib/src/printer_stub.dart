@@ -50,3 +50,9 @@ Future<bool> connectViaBluetoothMobile(String deviceId) async {
   debugPrint('connectViaBluetoothMobile: not supported on this platform.');
   return false;
 }
+
+void monitorBluetoothConnectionMobile(
+    String deviceId, Function(bool) onStateChanged) {
+  debugPrint(
+      'monitorBluetoothConnectionMobile: not supported on this platform.');
+}
