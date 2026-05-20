@@ -1,3 +1,6 @@
+// lib/mekfeya_printer_bridge.dart
+library mekfeya_printer_bridge;
+
 // Routes to the correct implementation at compile time:
 // - Web build   → printer_web.dart    (dart:js_interop, no mobile packages)
 // - Mobile build → printer_mobile.dart (flutter_blue_plus, usb_serial, dart:io)
