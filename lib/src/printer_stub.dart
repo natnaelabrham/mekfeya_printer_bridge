@@ -45,3 +45,8 @@ Future<dynamic> getBluetoothWriteChar(String deviceId) async {
 Future<void> disconnectViaBluetoothMobile(String deviceId) async {
   debugPrint('disconnectViaBluetoothMobile: not supported on this platform.');
 }
+
+Future<bool> connectViaBluetoothMobile(String deviceId) async {
+  debugPrint('connectViaBluetoothMobile: not supported on this platform.');
+  return false;
+}

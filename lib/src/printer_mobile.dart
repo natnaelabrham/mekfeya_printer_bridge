@@ -45,6 +45,40 @@ Future<bool> sendViaBluetooth(List<int> bytes, String deviceId) async {
   }
 }
 
+// ── Bluetooth Connection ─────────────────────────────────────────────────────
+Future<bool> connectViaBluetoothMobile(String deviceId) async {
+  try {
+    final device = BluetoothDevice.fromId(deviceId);
+
+    // Explicitly add the required License argument required by newer flutter_blue_plus versions
+    await device.connect(
+      license: License.free,
+      timeout: const Duration(seconds: 10),
+      autoConnect: false,
+    );
+
+    await device.discoverServices();
+    debugPrint("LOG: Connected successfully to ${device.remoteId}");
+    return true;
+  } catch (e) {
+    debugPrint("LOG: Connection failed: $e");
+    return false;
+  }
+}
+
+Future<void> disconnectViaBluetoothMobile(String deviceId) async {
+  try {
+    if (deviceId.isNotEmpty) {
+      final device = BluetoothDevice.fromId(deviceId);
+      await device.disconnect();
+      debugPrint(
+          'disconnectViaBluetoothMobile: Device $deviceId disconnected.');
+    }
+  } catch (e) {
+    debugPrint('disconnectViaBluetoothMobile error: $e');
+  }
+}
+
 // ── USB ───────────────────────────────────────────────────────────────────────
 Future<bool> sendViaUsb(List<int> bytes) async {
   if (Platform.isIOS) {
@@ -87,20 +121,6 @@ Future<bool> sendViaEthernetMobile(List<int> bytes, String ip) async {
     debugPrint('sendViaEthernetMobile error: $e');
     socket?.destroy();
     return false;
-  }
-}
-
-// Add this under your Bluetooth section
-Future<void> disconnectViaBluetoothMobile(String deviceId) async {
-  try {
-    if (deviceId.isNotEmpty) {
-      final device = BluetoothDevice.fromId(deviceId);
-      await device.disconnect();
-      debugPrint(
-          'disconnectViaBluetoothMobile: Device $deviceId disconnected.');
-    }
-  } catch (e) {
-    debugPrint('disconnectViaBluetoothMobile error: $e');
   }
 }
 
