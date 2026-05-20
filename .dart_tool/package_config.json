@@ -2,6 +2,24 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "args",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/args-2.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "async",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/async-2.13.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "bluez",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/bluez-0.8.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/characters-1.4.1",
       "packageUri": "lib/",
@@ -14,10 +32,76 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "dbus",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/dbus-0.7.12",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "ffi",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/ffi-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///Users/esayasalemu/Tools/Flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.9"
+    },
+    {
+      "name": "flutter_blue_plus",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus-1.36.8",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "flutter_blue_plus_android",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_android-7.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "flutter_blue_plus_darwin",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_darwin-7.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "flutter_blue_plus_linux",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_linux-7.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "flutter_blue_plus_platform_interface",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_platform_interface-7.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "flutter_blue_plus_web",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/flutter_blue_plus_web-7.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///Users/esayasalemu/Tools/Flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/http-1.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/http_parser-4.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "material_color_utilities",
@@ -32,16 +116,76 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "path",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/path-1.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "petitparser",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/petitparser-7.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "rxdart",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/esayasalemu/Tools/Flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
+      "name": "source_span",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/source_span-1.10.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "string_scanner",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "term_glyph",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/typed_data-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "usb_serial",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/usb_serial-0.5.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/vector_math-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.1"
+    },
+    {
+      "name": "web",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/web-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "xml",
+      "rootUri": "file:///Users/esayasalemu/.pub-cache/hosted/pub.dev/xml-6.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
     },
     {
       "name": "mekfeya_printer_bridge",

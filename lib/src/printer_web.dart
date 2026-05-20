@@ -2,20 +2,18 @@ import 'dart:js_interop';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
+// ── JS bridges ───────────────────────────────────────────────────────────────
 @JS('requestBluetoothPrinter')
 external JSPromise<JSBoolean> _requestBluetoothPrinter();
 
 @JS('requestSerialPrinter')
 external JSPromise<JSBoolean> _requestSerialPrinter();
 
-@JS('requestUsbPrinter') // 🚨 Added WebUSB binding
+@JS('requestUsbPrinter')
 external JSPromise<JSBoolean> _requestUsbPrinter();
 
 @JS('isWindowsBrowser')
 external JSBoolean _isWindowsBrowser();
-
-@JS('disconnectPrinter')
-external JSPromise<JSBoolean> _disconnectPrinter();
 
 @JS('sendDataToPrinter')
 external JSPromise<JSBoolean> _sendDataToPrinter(JSUint8Array data);
@@ -28,9 +26,11 @@ extension WindowExtension on JSObject {
   external set onPrinterDisconnectCallback(JSFunction cb);
 }
 
-// ── connectWebPrinter (Unified Parameterized Version) ────────────────────────
-Future<bool> connectWebPrinter(
-    {required String type, required Function onDisconnect}) async {
+// ── connectWebPrinter ────────────────────────────────────────────────────────
+Future<bool> connectWebPrinter({
+  required String type,
+  required Function onDisconnect,
+}) async {
   try {
     _window.onPrinterDisconnectCallback = (() {
       onDisconnect();
@@ -38,26 +38,19 @@ Future<bool> connectWebPrinter(
     }).toJS;
 
     bool connectionSuccess = false;
-
     if (type == 'usb') {
-      // 🔌 Route directly to raw WebUSB connection
-      debugPrint('Initiating direct WebUSB connection sequence...');
       final result = await _requestUsbPrinter().toDart;
       connectionSuccess = result.toDart;
     } else {
-      // 🧠 Route to your smart Windows Serial / Mobile Bluetooth logic
       final bool isWindows = _isWindowsBrowser().toDart;
       if (isWindows) {
-        debugPrint('Windows browser: using Web Serial API.');
         final result = await _requestSerialPrinter().toDart;
         connectionSuccess = result.toDart;
       } else {
-        debugPrint('Non-Windows browser: using Web Bluetooth API.');
         final result = await _requestBluetoothPrinter().toDart;
         connectionSuccess = result.toDart;
       }
     }
-
     return connectionSuccess;
   } catch (e) {
     debugPrint('connectWebPrinter error ($type): $e');
@@ -74,9 +67,8 @@ Future<bool> sendDataToPrinterWeb(List<int> bytes) async {
       final chunk = bytes.sublist(i, end);
       final result =
           await _sendDataToPrinter(Uint8List.fromList(chunk).toJS).toDart;
-      if (result.toDart == false) {
+      if (result.toDart == false)
         throw Exception('Web Printer JS rejected payload at chunk $i.');
-      }
       await Future.delayed(const Duration(milliseconds: 30));
     }
     await Future.delayed(const Duration(milliseconds: 500));
@@ -87,4 +79,11 @@ Future<bool> sendDataToPrinterWeb(List<int> bytes) async {
   }
 }
 
+// ── disconnectWebPrinter ─────────────────────────────────────────────────────
 Future<bool> disconnectWebPrinter() async => true;
+
+// ── Mobile stubs — never called on web ───────────────────────────────────────
+Future<dynamic> getBluetoothWriteChar(String deviceId) async => null;
+Future<bool> sendViaBluetooth(List<int> bytes, String deviceId) async => false;
+Future<bool> sendViaUsb(List<int> bytes) async => false;
+Future<bool> sendViaEthernetMobile(List<int> bytes, String ip) async => false;
