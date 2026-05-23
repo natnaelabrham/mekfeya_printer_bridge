@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // Mobile-only packages (flutter_blue_plus, usb_serial, dart:io)
 // are never compiled on web. All transport functions return false safely.
 
+bool isDesktopPlatform() => false;
+
 Future<bool> connectWebPrinter({
   required String type,
   required Function onDisconnect,

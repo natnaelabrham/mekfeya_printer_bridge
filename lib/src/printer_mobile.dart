@@ -150,3 +150,8 @@ Future<bool> connectWebPrinter({
 
 Future<bool> sendDataToPrinterWeb(List<int> bytes) async => false;
 Future<bool> disconnectWebPrinter() async => true;
+
+bool isDesktopPlatform() {
+  // dart:io is safe here — mobile file is never compiled on web
+  return Platform.isWindows || Platform.isMacOS || Platform.isLinux;
+}

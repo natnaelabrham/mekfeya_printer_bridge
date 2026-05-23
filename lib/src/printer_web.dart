@@ -26,6 +26,9 @@ extension WindowExtension on JSObject {
   external set onPrinterDisconnectCallback(JSFunction cb);
 }
 
+bool isDesktopPlatform() => false;
+// Web is never desktop native — browser is browser
+
 // ── connectWebPrinter ────────────────────────────────────────────────────────
 Future<bool> connectWebPrinter({
   required String type,
