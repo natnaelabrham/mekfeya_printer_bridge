@@ -108,11 +108,12 @@ Future<bool> sendViaUsb(List<int> bytes) async {
 }
 
 // ── Ethernet ──────────────────────────────────────────────────────────────────
-Future<bool> sendViaEthernetMobile(List<int> bytes, String ip) async {
+Future<bool> sendViaEthernetMobile(List<int> bytes, String ip,
+    [int port = 9100]) async {
   Socket? socket;
   try {
     socket =
-        await Socket.connect(ip, 9100, timeout: const Duration(seconds: 3));
+        await Socket.connect(ip, port, timeout: const Duration(seconds: 3));
     socket.add(bytes);
     await socket.flush();
     await socket.close();

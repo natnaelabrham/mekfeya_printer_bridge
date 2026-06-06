@@ -95,4 +95,6 @@ Future<bool> disconnectWebPrinter() async => true;
 Future<dynamic> getBluetoothWriteChar(String deviceId) async => null;
 Future<bool> sendViaBluetooth(List<int> bytes, String deviceId) async => false;
 Future<bool> sendViaUsb(List<int> bytes) async => false;
-Future<bool> sendViaEthernetMobile(List<int> bytes, String ip) async => false;
+Future<bool> sendViaEthernetMobile(List<int> bytes, String ip,
+        [int port = 9100]) async =>
+    false;

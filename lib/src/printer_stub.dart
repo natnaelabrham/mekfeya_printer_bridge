@@ -32,7 +32,8 @@ Future<bool> sendViaUsb(List<int> bytes) async {
   return false;
 }
 
-Future<bool> sendViaEthernetMobile(List<int> bytes, String ip) async {
+Future<bool> sendViaEthernetMobile(List<int> bytes, String ip,
+    [int port = 9100]) async {
   debugPrint('sendViaEthernetMobile: not supported on web.');
   return false;
 }
