@@ -50,18 +50,34 @@ Future<bool> connectViaBluetoothMobile(String deviceId) async {
   try {
     final device = BluetoothDevice.fromId(deviceId);
 
-    // Explicitly add the required License argument required by newer flutter_blue_plus versions
     await device.connect(
       license: License.free,
       timeout: const Duration(seconds: 10),
       autoConnect: false,
     );
 
-    await device.discoverServices();
-    debugPrint("LOG: Connected successfully to ${device.remoteId}");
-    return true;
+    final services = await device.discoverServices();
+
+    // ── Verify writable characteristic exists ─────────────────────────────
+    // Same UUID logic used by getBluetoothWriteChar and all print actions.
+    // Only return true if the printer is genuinely ready to receive data.
+    for (var s in services) {
+      for (var c in s.characteristics) {
+        if (c.uuid.toString().contains('bef8d6c9') ||
+            c.uuid.toString().contains('884143f4') ||
+            c.properties.write) {
+          debugPrint('connectViaBluetoothMobile: writable characteristic confirmed — printer ready.');
+          return true;
+        }
+      }
+    }
+
+    // Connected but no printer characteristic found — not a printer
+    debugPrint('connectViaBluetoothMobile: no writable characteristic — disconnecting.');
+    await device.disconnect();
+    return false;
   } catch (e) {
-    debugPrint("LOG: Connection failed: $e");
+    debugPrint('connectViaBluetoothMobile error: $e');
     return false;
   }
 }
