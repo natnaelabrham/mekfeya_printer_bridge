@@ -5,18 +5,16 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:usb_serial/usb_serial.dart';
 
 // ── Bluetooth ─────────────────────────────────────────────────────────────────
-// Returns the write characteristic — used by print actions that connect early
 Future<BluetoothCharacteristic?> getBluetoothWriteChar(String deviceId) async {
   try {
     final device = BluetoothDevice.fromId(deviceId);
 
     // ── Use cached services if already connected ──────────────────────────
-    // Calling discoverServices() twice on Android can return empty results.
-    // If already connected, use servicesList which are cached after first discovery.
+    // Calling discoverServices() twice on Android returns empty or throws.
+    // connectViaBluetoothMobile already called discoverServices() and cached them.
     List<BluetoothService> services;
     if (device.isConnected) {
       services = device.servicesList;
-      // If cache is empty for some reason, re-discover
       if (services.isEmpty) {
         services = await device.discoverServices();
       }
@@ -59,7 +57,7 @@ Future<bool> sendViaBluetooth(List<int> bytes, String deviceId) async {
   }
 }
 
-// ── Bluetooth Connection ─────────────────────────────────────────────────────
+// ── Bluetooth Connection ──────────────────────────────────────────────────────
 Future<bool> connectViaBluetoothMobile(String deviceId) async {
   try {
     final device = BluetoothDevice.fromId(deviceId);
@@ -73,8 +71,6 @@ Future<bool> connectViaBluetoothMobile(String deviceId) async {
     final services = await device.discoverServices();
 
     // ── Verify writable characteristic exists ─────────────────────────────
-    // Same UUID logic used by getBluetoothWriteChar and all print actions.
-    // Only return true if the printer is genuinely ready to receive data.
     for (var s in services) {
       for (var c in s.characteristics) {
         if (c.uuid.toString().contains('bef8d6c9') ||
@@ -86,7 +82,7 @@ Future<bool> connectViaBluetoothMobile(String deviceId) async {
       }
     }
 
-    // Connected but no printer characteristic found — not a printer
+    // Connected but no printer characteristic — disconnect cleanly
     debugPrint('connectViaBluetoothMobile: no writable characteristic — disconnecting.');
     await device.disconnect();
     return false;
@@ -101,8 +97,7 @@ Future<void> disconnectViaBluetoothMobile(String deviceId) async {
     if (deviceId.isNotEmpty) {
       final device = BluetoothDevice.fromId(deviceId);
       await device.disconnect();
-      debugPrint(
-          'disconnectViaBluetoothMobile: Device $deviceId disconnected.');
+      debugPrint('disconnectViaBluetoothMobile: Device $deviceId disconnected.');
     }
   } catch (e) {
     debugPrint('disconnectViaBluetoothMobile error: $e');
@@ -142,8 +137,8 @@ Future<bool> sendViaEthernetMobile(List<int> bytes, String ip,
     [int port = 9100]) async {
   Socket? socket;
   try {
-    socket =
-        await Socket.connect(ip, port, timeout: const Duration(seconds: 3));
+    socket = await Socket.connect(ip, port,
+        timeout: const Duration(seconds: 3));
     socket.add(bytes);
     await socket.flush();
     await socket.close();
@@ -155,20 +150,19 @@ Future<bool> sendViaEthernetMobile(List<int> bytes, String ip,
   }
 }
 
-// ── Connection Monitoring ───────────────────────────────────────────────────
+// ── Connection Monitoring ─────────────────────────────────────────────────────
 void monitorBluetoothConnectionMobile(
     String deviceId, Function(bool) onStateChanged) {
   try {
     if (deviceId.isEmpty) return;
     final device = BluetoothDevice.fromId(deviceId);
-
     device.connectionState.listen((BluetoothConnectionState state) {
       bool isConnected = (state == BluetoothConnectionState.connected);
       onStateChanged(isConnected);
-      debugPrint("LOG: Connection state changed to: $state");
+      debugPrint('LOG: Connection state changed to: $state');
     });
   } catch (e) {
-    debugPrint("LOG: Error monitoring connection: $e");
+    debugPrint('LOG: Error monitoring connection: $e');
   }
 }
 
@@ -176,13 +170,11 @@ void monitorBluetoothConnectionMobile(
 Future<bool> connectWebPrinter({
   required String type,
   required Function onDisconnect,
-}) async =>
-    false;
+}) async => false;
 
 Future<bool> sendDataToPrinterWeb(List<int> bytes) async => false;
 Future<bool> disconnectWebPrinter() async => true;
 
 bool isDesktopPlatform() {
-  // dart:io is safe here — mobile file is never compiled on web
   return Platform.isWindows || Platform.isMacOS || Platform.isLinux;
 }
