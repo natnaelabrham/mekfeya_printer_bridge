@@ -9,7 +9,21 @@ import 'package:usb_serial/usb_serial.dart';
 Future<BluetoothCharacteristic?> getBluetoothWriteChar(String deviceId) async {
   try {
     final device = BluetoothDevice.fromId(deviceId);
-    final services = await device.discoverServices();
+
+    // ── Use cached services if already connected ──────────────────────────
+    // Calling discoverServices() twice on Android can return empty results.
+    // If already connected, use servicesList which are cached after first discovery.
+    List<BluetoothService> services;
+    if (device.isConnected) {
+      services = device.servicesList;
+      // If cache is empty for some reason, re-discover
+      if (services.isEmpty) {
+        services = await device.discoverServices();
+      }
+    } else {
+      services = await device.discoverServices();
+    }
+
     for (var s in services) {
       for (var c in s.characteristics) {
         if (c.uuid.toString().contains('bef8d6c9') ||
