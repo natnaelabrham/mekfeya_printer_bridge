@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:usb_serial/usb_serial.dart';
+
+StreamSubscription<BluetoothConnectionState>? _connectionStateSub;
 
 // ── Bluetooth ─────────────────────────────────────────────────────────────────
 Future<BluetoothCharacteristic?> getBluetoothWriteChar(String deviceId) async {
@@ -94,6 +97,8 @@ Future<bool> connectViaBluetoothMobile(String deviceId) async {
 
 Future<void> disconnectViaBluetoothMobile(String deviceId) async {
   try {
+    await _connectionStateSub?.cancel();
+    _connectionStateSub = null;
     if (deviceId.isNotEmpty) {
       final device = BluetoothDevice.fromId(deviceId);
       await device.disconnect();
@@ -154,9 +159,12 @@ Future<bool> sendViaEthernetMobile(List<int> bytes, String ip,
 void monitorBluetoothConnectionMobile(
     String deviceId, Function(bool) onStateChanged) {
   try {
+    _connectionStateSub?.cancel();
+    _connectionStateSub = null;
     if (deviceId.isEmpty) return;
     final device = BluetoothDevice.fromId(deviceId);
-    device.connectionState.listen((BluetoothConnectionState state) {
+    _connectionStateSub =
+        device.connectionState.listen((BluetoothConnectionState state) {
       bool isConnected = (state == BluetoothConnectionState.connected);
       onStateChanged(isConnected);
       debugPrint('LOG: Connection state changed to: $state');
